@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.bttn{
+    border-radius: 2px;
+    font-weight: 700;
+    color: white;
+    height: 30px;
+    width: 40px;
+    margin: 30px 3px;
+    border: none;
+    background-color: #7f25e7b9;
+    cursor: pointer;
+}

@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap');
+/* Container */
+.container{
+    background-color: #2b292a61;
+    padding: 15px 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    box-shadow: -2px 0px 21px 5px rgb(86 86 86 / 25%);
+    display: flex;
+    align-items: start;
+    flex-direction: unset;
+}

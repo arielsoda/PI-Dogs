@@ -1,0 +1,10 @@
+.container{
+    background-image: url('../../assest/img/fondoHome.jpg');
+    display: flex;
+    flex-direction: column;
+}
+.container2{
+    display: block;
+    justify-content: space-between;
+
+}

@@ -1,0 +1,24 @@
+.container{
+    width: 99%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 5px;
+}
+.container2{
+    width: 79%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    height: 800px;
+}
+.zindex{
+    z-index: 1;
+}
+.link{
+    z-index: 2;
+    text-decoration: none;
+    color: black;
+}

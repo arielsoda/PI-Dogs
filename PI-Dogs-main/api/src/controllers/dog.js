@@ -1,4 +1,4 @@
-const {Dog} = require('../db');
+const {Dog, Temperament} = require('../db');
 const axios = require('axios');
 const {
     YOUR_API_KEY,
@@ -6,11 +6,12 @@ const {
 /* const { v4: uuidv4 } = require('uuid'); */
 
 const dogApi = axios.get(`https://api.thedogapi.com/v1/breeds?api_key={${YOUR_API_KEY}}`);
-const dogDB = Dog.findAll();
 
 
 
-function getAllDogs (req, res, next) {
+
+async function getAllDogs (req, res, next) {
+    const dogDB = await Dog.findAll({include: Temperament});
     const {name} = req.query;
     if (name){
         Promise.all([dogApi, dogDB]) 
@@ -27,7 +28,8 @@ function getAllDogs (req, res, next) {
                     weight:d.weight,
                     height:d.height,
                     life_span: d.life_span,
-                    temperament:d.dataValues.temperament
+                    temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
+                    createdInDB: true
               };
               })
             if (dar.length > 0){
@@ -59,7 +61,8 @@ function getAllDogs (req, res, next) {
                 weight:d.weight,
                 height:d.height,
                 life_span: d.life_span,
-                temperament:d.dataValues.temperament
+                temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
+                createdInDB: true
               };
               })
             return res.json(
@@ -79,7 +82,8 @@ function getAllDogs (req, res, next) {
         }
 };
 
-function getDogForId (req, res, next) {
+async function getDogForId (req, res, next) {
+    const dogDB = await Dog.findAll({include: Temperament});
     const {idDog} = req.params;
     if (!isNaN(idDog)){
         Promise.all([dogApi, dogDB]) 
@@ -96,7 +100,8 @@ function getDogForId (req, res, next) {
                     weight:d.weight,
                     height:d.height,
                     life_span: d.life_span,
-                    temperament:d.dataValues.temperament
+                    temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
+                    createdInDB: true
               };
               });
             if (dar.length > 0){
@@ -122,18 +127,18 @@ function getDogForId (req, res, next) {
 
 async function addDogs (req, res, next) {
     /* const id = uuidv4(); */
-    const {name, minheight, maxheight, minweight, maxweight, minlife_span, maxlife_span, temperament} = req.body;
-    let height = minheight + ' - ' + maxheight;
-    let weight = minweight + ' - ' + maxweight;
+    const {name, minHeight, maxHeight, minWeight, maxWeight, minlife_span, maxlife_span, temperament} = req.body;
+    let height = minHeight + ' - ' + maxHeight;
+    let weight = minWeight + ' - ' + maxWeight;
     let life_span;
     if(minlife_span && maxlife_span && parseInt(minlife_span) <= parseInt(maxlife_span)) {
-        life_span = minlife_span + ' - ' + maxlife_span + ' years';
+        life_span = minlife_span + ' - ' + maxlife_span;
     }else{
         life_span = 'Life span not declared';
     }
 
   let image ='https://para-perros.online/wp-content/uploads/2018/10/imagen-de-perro-gracioso-1.jpg#main'
-  if(name && minweight && maxweight && minheight && minheight){
+  if(name && minWeight && maxWeight && minHeight && maxHeight ){
     try{
     const newDog = await Dog.create({
       name, 
@@ -153,6 +158,7 @@ async function addDogs (req, res, next) {
     return res.status(404).send({msg: "Faltan los valores basicos"})
   }
 };
+
 
 
 

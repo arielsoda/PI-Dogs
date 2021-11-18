@@ -1,0 +1,108 @@
+
+/* Container */
+.container{
+    background-image: url('../../assest/img/fondoCreater.jpg');
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+/* Form */
+img{
+    width: 100%;
+}
+input, select{
+    margin: 7px 0 10px;
+    padding: 6px;
+    border-radius: 7px;
+    border: 1px solid #607D8B;
+    width: 96%;
+    font-size: 14px;
+}
+/* checkbox inputs */
+.columninput{
+    margin-left: 10px;
+}
+
+h2{
+    padding: 10px;
+    text-align: center;
+    font-size: 27px;
+    font-weight: 500;
+    color: #faf9ee;
+}
+.boxContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.box1{
+    width: 55%;
+}
+.box2{
+    margin-bottom: 20px;
+    display: block;
+    padding: 10px;
+    width: 40%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.divPerTemp{
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    background-color: #00695C;
+    padding: 8px 9px;
+}
+.info2{
+    margin-left: 10px;
+    font-size: 11px;
+    color: #00ACC1;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    padding-left: 10px;
+}
+.info{
+    margin-left: 10px;
+    font-size: 11px;
+    color: #F44336;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    padding-left: 10px;
+}
+.advise{
+    margin-left: 10px;
+    font-size: 11px;
+    color: #F57C00;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    padding-left: 10px;
+}
+.divPerTemp span{
+    margin-left: 25px;
+}
+.divPerTemp button{
+    width: 15px;
+    position: absolute;
+    border: none;
+    border-radius: 9px;
+    font-weight: 900;
+    background-color: white;
+    cursor: pointer;
+}
+.form{
+    padding: 10px 40px;
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 18px -2px #546E7A;
+}
+/* Img */
+.imgContainer{
+    padding: 40px 0;
+    width: 25%;
+}
+/* Bttn */
+.bttn{
+    margin: 20px 0;
+    background-color: #43A047;
+    font-size: 18px;    font-weight: 600;
+    color: white;
+    width: 100%;  height: 40px;
+    border: none; border-radius: 10px;
+    cursor: pointer;
+}

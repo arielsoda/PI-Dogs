@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.title{
+    font-weight: 700;
+}
+.container{
+    color: white;
+    padding: 83px;
+    width: 81%;
+    display: flex;
+    justify-content: space-around;
+}
+.box{
+    padding: 30px;
+    width: 40%;
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+}
+.p{
+    margin-bottom: 10px;
+}
+.img{
+    overflow: hidden;
+}
+.imgContainer{
+    width: 50%;
+    border-radius: 30px;
+}
+.div{
+    background-image: url('../../assest/img/fondoDetails.png');
+}
