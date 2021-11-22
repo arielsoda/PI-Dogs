@@ -16,7 +16,7 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
             return allDogs
         }
         getDogs()
-    }, [bringDogs], console.log('Me trae todos los perros', bringDogs))
+    }, [/* bringDogs */], console.log('Me trae todos los perros', bringDogs))
     /* Pagination */
     useEffect(() => {
         getPages()
@@ -40,7 +40,7 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
                         weight={dog.weight}
                     />
                 </Link>)
-            })}
+            },console.log('pageToShow',pageToShow))}
         </div>
     )
 }
