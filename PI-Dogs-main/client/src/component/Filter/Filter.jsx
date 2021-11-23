@@ -25,7 +25,7 @@ const Filter = ({ temperaments, bringTemperaments, filterBy }) => {
                 <option value='filter' disabled>Filter</option>
                 <option value='API' name='Api'>Api</option>
                 <option value='Data Base' name='DataBase'>Data Base</option>
-                { temperaments.map(temp =>(<option value={temp.name} name={temp.name} key={temp.id} >{temp.name}</option>)) }
+                { temperaments.map(temp =>(<option value={temp.name} name={temp.name} key={temperaments.indexOf(temp)} >{temp.name}</option>)) }
             </select>
         </div>
     )

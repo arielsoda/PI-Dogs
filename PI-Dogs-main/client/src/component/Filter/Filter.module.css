@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: -35px;
+    color: white;
 }
 /* Select */
 .select{

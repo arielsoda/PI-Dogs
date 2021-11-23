@@ -16,12 +16,12 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
             return allDogs
         }
         getDogs()
-    }, [/* bringDogs */], console.log('Me trae todos los perros', bringDogs))
+    }, [bringDogs], console.log('Me trae todos los perros', bringDogs))
     /* Pagination */
     useEffect(() => {
         getPages()
         showEspPage(0)
-    }, [dogs],console.log('NO TENGO IDEA DE QUE HACE ACA', dogs))
+    }, [dogs,getPages, showEspPage],console.log('Me trae los perros por pagina', dogs, getPages, showEspPage))
 
     while (!pageToShow) {
         return (<div className={Styles.container2} >Loging...</div>)

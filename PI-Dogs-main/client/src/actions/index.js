@@ -64,7 +64,7 @@ export const bringDogs = () => {
 } */
 
 
-/* Temperaments in the server 3002 */
+/* Temperaments in the server 3001 */
 export const bringTemperaments = () => {
     return async function (dispatch) {
         let serverTemps = `${server}/temperament`;

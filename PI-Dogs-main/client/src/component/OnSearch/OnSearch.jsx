@@ -29,7 +29,7 @@ const OnSearch = ({ search }) => {
                     placeholder='Search...'
                     value={state.search}
                     onChange={handleChange} />
-                <button onClick={handleSearch} className={Styles.button}>Find</button>
+                { state.search ? (<button onClick={handleSearch} className={Styles.button}>Find</button>): (<button className={Styles.button}>Find</button> )}
             </label>
         </div >
     )

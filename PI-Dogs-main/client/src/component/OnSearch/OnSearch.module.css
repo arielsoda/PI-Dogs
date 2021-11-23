@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap');
 /* Container */
 .container{
     display: block;
     width: 90%;
     font-family: 'Rubik', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
 }
 /* Input */
 .form{

@@ -81,7 +81,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.name}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         {/* Min/Max height */}
                         {/* <span>Min/Max height</span> */}
                         {!state.minHeight && !state.maxHeight ? (<span className='info' >Min and Max Height is required</span>) 
@@ -99,7 +99,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.minH}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         <label>
                             <input
                                 id='maxH'
@@ -110,7 +110,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.maxH}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         {/* Min/Max Weight */}
                         {/* <span>Min/Max weight</span> */}
                         {!state.minWeight && !state.maxWeight ? (<span className='info' >Min and Max Weight is required</span>) 
@@ -128,7 +128,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.minW}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         <label>
                             <input
                                 id='maxW'
@@ -139,7 +139,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.maxW}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         {/* Life Expectancy */}
                         {/* <span>Life Expectancy</span> */}
                         {/* {!state.life_span ? (<span className='info' >Life Expectancy is required</span>) 
@@ -173,7 +173,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
                                 value={state.minW}
                                 onChange={handleChange}
                             />
-                        </label>
+                        </label><br />
                         <label>
                             <input
                                 id='maxlife_span'

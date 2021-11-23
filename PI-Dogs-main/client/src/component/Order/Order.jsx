@@ -50,14 +50,14 @@ const Order = ({ orderA, orderD, orderLight, orderHeavy }) => {
 
     return (
         <div className={Styles.container} >
-            <span>Order By</span>
-            <p className={Styles.litSpan} >Alphabetic</p>
+            {/* <span>Order by </span> */}
+            <p className={Styles.litSpan} >Order by Alphabetic</p>
             <div>
                 {orderAW.alph ? (<button className={Styles.bttns} onClick={ascen} >A-Z</button>) : (<button className={Styles.bttns} onClick={descen} >Z-A</button>)}
                 {/* <button className={Styles.bttns} onClick={orderD} >A-Z</button>
                 <button className={Styles.bttns} onClick={orderA} >Z-A</button> */}
             </div>
-            <p className={Styles.litSpan}>Weight</p>
+            <p className={Styles.litSpan}>Order by Weight</p>
             <div>
                 {orderAW.weight ? (<button className={Styles.bttns} onClick={light} >-KG</button>) : (<button className={Styles.bttns} onClick={heavy} >+KG</button>)}
                 {/* <button className={Styles.bttns} onClick={orderLight} >-KG</button>

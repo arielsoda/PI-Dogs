@@ -74,6 +74,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     return dog
                 } */
             })
+            if (!dog.length) return console.log('Dog not found', dog, auxiliar)
             return {
                 ...state,
                 dogs: dog,
