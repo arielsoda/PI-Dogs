@@ -1,7 +1,6 @@
 
 /* Container */
 .container{
-    background-image: url('../../assest/img/fondoCreater.jpg');
     margin: 20px;
     display: flex;
     justify-content: space-around;

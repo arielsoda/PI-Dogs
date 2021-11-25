@@ -2,7 +2,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap'); */
 /* Vars */
 .container{
-    background-image: url('../../assest/img/fondoNavBar.png');
+    background-image: url('../../tools/img/fondoNavBar.png');
     position: relative;
     font-family: 'Rubik';
     padding: 3px 15px 0;

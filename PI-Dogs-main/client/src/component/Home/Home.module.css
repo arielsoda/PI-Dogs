@@ -1,5 +1,5 @@
 .container{
-    background-image: url('../../assest/img/fondoHome.jpg');
+    background-image: url('../../tools/img/fondoHome.jpg');
     display: flex;
     flex-direction: column;
 }

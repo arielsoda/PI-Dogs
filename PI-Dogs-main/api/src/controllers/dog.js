@@ -3,7 +3,6 @@ const axios = require('axios');
 const {
     YOUR_API_KEY,
   } = process.env;
-/* const { v4: uuidv4 } = require('uuid'); */
 
 const dogApi = axios.get(`https://api.thedogapi.com/v1/breeds?api_key={${YOUR_API_KEY}}`);
 
@@ -126,7 +125,6 @@ async function getDogForId (req, res, next) {
 };
 
 async function addDogs (req, res, next) {
-    /* const id = uuidv4(); */
     const {name, minHeight, maxHeight, minWeight, maxWeight, minlife_span, maxlife_span, temperament} = req.body;
     let height = minHeight + ' - ' + maxHeight;
     let weight = minWeight + ' - ' + maxWeight;

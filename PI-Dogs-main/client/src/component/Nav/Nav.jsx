@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /* Estyles */
 import styles from './Nav.module.css';
 /* Imgs & assts*/
-import Icon from '../../assest/icons/dog.png'
+import Icon from '../../tools/icons/dog.png'
 
 const Nav = () => {
     return (
