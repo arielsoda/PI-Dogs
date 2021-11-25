@@ -20,48 +20,13 @@ export const bringDogs = () => {
         /* server back */
         let serverDogs = `${server}/dogs`;
         const response = await axios(serverDogs);
-        const data = response.data.map(d => {
-            if (d.createdInDB === true) {
-                /* let temperament = d.temperament.map(temp => temp.name)
-                let joinTemps = temperament.join(', ') */
-                return {
-                    id: d.id,
-                    temperament: d.temperament,
-                    image: d.image,
-                    name: d.name,
-                    weight: d.weight,
-                    height: d.height,
-                    createdInDB: true,
-                    life_span: `${d.life_span} years`
-                }
-            }
-            if (!d.weight.includes('NaN')) return d
-            return null
-        }).filter(Boolean);
+        const data = response.data
         return dispatch({
             type: GETDOGS,
             payload: data
         })
     }
 }
-
-/* export const bringDogs = () => {
-    return async function (dispatch) {
-        const response = await axios(`${server}/dogs`);
-        dogsArr = response.data.map(d => {
-            dogsArr.push({
-                id: d.id,
-                temperament: joinTemps,
-                image: d.image,
-                name: d.name,
-                weight: `${d.minWeight} - ${d.maxWeight}`,
-                height: `${d.minHeight} - ${d.maxHeight}`,
-                createdInDB: true,
-                life_span: `${d.life_span} years`
-            })
-        })
-    }
-} */
 
 
 /* Temperaments in the server 3001 */

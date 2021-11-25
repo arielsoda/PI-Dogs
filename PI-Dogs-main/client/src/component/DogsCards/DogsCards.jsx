@@ -9,6 +9,8 @@ import { bringDogs, bringDogDetails, getPages, showEspPage } from "../../actions
 import DogCard from "../DogCard/DogCard";
 
 const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, showEspPage }) => {
+
+    
     /* Bring all dogs */
     useEffect(() => {
         async function getDogs() {
@@ -16,7 +18,9 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
             return allDogs
         }
         getDogs()
-    }, [bringDogs], console.log('Me trae todos los perros', bringDogs))
+    }, [bringDogs], console.log('Me trae todos los perros', bringDogs));
+
+
     /* Pagination */
     useEffect(() => {
         getPages()
@@ -32,19 +36,21 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
                 const bringDog = () => {
                     bringDogDetails(dog.id)
                 }
-                return (<Link onClick={bringDog} key={dog.id} className={Styles.link} to={`/home/${dog.id}`}>
-                    <DogCard
-                        name={dog.name}
-                        imagen={dog.image}
-                        temperament={dog.temperament}
-                        weight={dog.weight}
-                    />
-                </Link>)
+                return (
+                    <Link onClick={bringDog} key={dog.id} className={Styles.link} to={`/home/${dog.id}`}>
+                        <DogCard
+                            name={dog.name}
+                            imagen={dog.image}
+                            temperament={dog.temperament}
+                            weight={dog.weight}
+                        />
+                    </Link>
+                )
             },console.log('pageToShow',pageToShow))}
         </div>
     )
 }
-const mapStateToProps = ({ dogs, pageToShow/* , pages */ }) => ({
+const mapStateToProps = ({ dogs, pageToShow}) => ({
     dogs,
     pageToShow
 })

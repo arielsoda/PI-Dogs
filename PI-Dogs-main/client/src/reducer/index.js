@@ -25,7 +25,7 @@ const initialState = {
 /* life_span */
 
 export default function rootReducer(state = initialState, { type, payload }) {
-    let auxDogs = state.dogs.map(dog => dog)
+    let auxDogs = state.dogs.map(dog => dog);
     let auxiliar = state.auxFilter
     switch (type) {
         case GETDOGS: /* Bring dogs  */
@@ -92,7 +92,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 console.log('PERROS', dog)
                 return null
             }
-            )/* .filter(Boolean) */
+            )
             console.log('PERROooooooS', dogs)
             return {
                 ...state,
