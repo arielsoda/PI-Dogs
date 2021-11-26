@@ -18,14 +18,14 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
             return allDogs
         }
         getDogs()
-    }, [bringDogs], console.log('Me trae todos los perros', bringDogs));
+    }, [bringDogs], /* console.log('Me trae todos los perros', bringDogs) */);
 
 
     /* Pagination */
     useEffect(() => {
         getPages()
         showEspPage(0)
-    }, [dogs,getPages, showEspPage],console.log('Me trae los perros por pagina', dogs, getPages, showEspPage))
+    }, [dogs,getPages, showEspPage]/* ,console.log('Me trae los perros por pagina', dogs, getPages, showEspPage) */)
 
     while (!pageToShow) {
         return (<div className={Styles.container2} >Loging...</div>)
@@ -46,7 +46,7 @@ const DogsCards = ({ dogs, pageToShow, bringDogs, bringDogDetails, getPages, sho
                         />
                     </Link>
                 )
-            },console.log('pageToShow',pageToShow))}
+            }/* ,console.log('pageToShow',pageToShow) */)}
         </div>
     )
 }

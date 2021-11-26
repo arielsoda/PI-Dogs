@@ -12,48 +12,11 @@ const dogApi = axios.get(`https://api.thedogapi.com/v1/breeds?api_key={${YOUR_AP
 async function getAllDogs (req, res, next) {
     const dogDB = await Dog.findAll({include: Temperament});
     const {name} = req.query;
-    if (name){
-        Promise.all([dogApi, dogDB]) 
-        .then((r)=>{
-            let [dogApiRes, dogDBRes] = r;
-            let dar = dogApiRes.data.filter(d => {
-                return d.name.toLocaleLowerCase().includes(name.toLocaleLowerCase());
-            })
-            dogDBRes = dogDBRes.map((d) =>{
-                return {
-                    id: d.id,
-                    image:d.image,
-                    name:d.name,
-                    weight:d.weight,
-                    height:d.height,
-                    life_span: d.life_span,
-                    temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
-                    createdInDB: true
-              };
-              })
-            if (dar.length > 0){
-                return res.json(
-                dogDBRes.concat(dar.map((d) => {
-                    return {
-                        id: d.id,
-                        image:d.image.url,
-                        name:d.name,
-                        weight:d.weight.metric,
-                        height:d.height.imperial,
-                        life_span: d.life_span,
-                        temperament: d.temperament,
-                       }}))
-            )}else{
-                return res.status(404).json({ msg: "Dog not found" });
-            }
-        })
-        .catch((err)=> next(err));
-    }else{
-        Promise.all([dogApi, dogDB]) 
-        .then((r)=>{
-            let [dogApiRes, dogDBRes] = r;
-            dogDBRes = dogDBRes.map((d) =>{
-                return {
+    Promise.all([dogApi, dogDB]) 
+    .then((r)=>{
+        let [dogApiRes, dogDBRes] = r;
+        dogDBRes = dogDBRes.map((d) =>{
+            return {
                 id: d.id,
                 image:d.image,
                 name:d.name,
@@ -62,66 +25,91 @@ async function getAllDogs (req, res, next) {
                 life_span: d.life_span,
                 temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
                 createdInDB: true
-              };
-              })
-            return res.json(
-                dogDBRes.concat(dogApiRes.data.map((d) => {
-                    return {
-                        id: d.id,
-                        image:d.image.url,
-                        name:d.name,
-                        weight:d.weight.metric,
-                        height:d.height.imperial,
-                        life_span: d.life_span,
-                        temperament: d.temperament,
-                       }}))
-            )
-        })
-        .catch((err)=> next(err));
+            };
+        });
+        dogApiRes = dogApiRes.data.map((d) => {
+            return {
+                id: d.id,
+                image:d.image.url,
+                name:d.name,
+                weight:d.weight.metric,
+                height:d.height.imperial,
+                life_span: d.life_span,
+                temperament: d.temperament
+            }
+        });
+        allDogs = dogDBRes.concat(dogApiRes);
+        if (!name) {
+            return res.json(allDogs);
+        }else{
+            let dogSearch = allDogs.filter(d => {
+                return d.name.toLocaleLowerCase().includes(name.toLocaleLowerCase());
+            });
+            if (dogSearch.length>0) {
+                return res.json(dogSearch);
+            }else{
+                return res.status(404).json({ msg: "Dog not found" });
+            }
         }
+    })
+    .catch((err)=> next(err));
 };
 
 async function getDogForId (req, res, next) {
-    const dogDB = await Dog.findAll({include: Temperament});
+    
     const {idDog} = req.params;
     if (!isNaN(idDog)){
-        Promise.all([dogApi, dogDB]) 
-        .then((r)=>{
-            let [dogApiRes, dogDBRes] = r;
-            let dar = dogApiRes.data.filter(d => { 
+        dogApi
+        .then(r=>{
+            let dogApiRes = r;
+            let dar = dogApiRes.data.filter(d => {
                 return d.id === parseInt(idDog);
-              });
-              dogDBRes = dogDBRes.map((d) =>{
-                return {
-                    id: d.id,
-                    image:d.image,
-                    name:d.name,
-                    weight:d.weight,
-                    height:d.height,
-                    life_span: d.life_span,
-                    temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
-                    createdInDB: true
-              };
-              });
+            });
             if (dar.length > 0){
                 return res.json(
-                dogDBRes.concat(dar.map((d) => {
+                    dar.map((d) => {
+                        return {
+                            id: d.id,
+                            image:d.image.url,
+                            name:d.name,
+                            weight:d.weight.metric,
+                            height:d.height.imperial,
+                            life_span: d.life_span,
+                            temperament: d.temperament
+                        }
+                    })
+                )
+            }else{
+                return res.status(404).json({ msg: "Dog not found" });
+            }           
+        })
+        .catch((err)=> next(err));
+    }else{
+        const dogDB = await Dog.findAll({include: Temperament})
+        .then(r=>{
+            let dogDBRes = r;
+            let ddbr = dogDBRes.filter(d =>{
+                return d.id === idDog;
+            });
+            if(ddbr.length > 0) {
+                return res.json(ddbr.map((d) =>{
                     return {
                         id: d.id,
-                        image:d.image.url,
+                        image:d.image,
                         name:d.name,
-                        weight:d.weight.metric,
-                        height:d.height.imperial,
+                        weight:d.weight,
+                        height:d.height,
                         life_span: d.life_span,
-                        temperament: d.temperament,
-                       }}))
-            )}else{
+                        temperament:d.dataValues.temperaments.map(t => t.name).join(', '),
+                        createdInDB: true
+                    };
+                }))
+            }else{
                 return res.status(404).json({ msg: "Dog not found" });
             }
         })
         .catch((err)=> next(err));
     }
-    return res.status(400).json({ msg: "wrong Id data, enter only numbers" });
 };
 
 async function addDogs (req, res, next) {

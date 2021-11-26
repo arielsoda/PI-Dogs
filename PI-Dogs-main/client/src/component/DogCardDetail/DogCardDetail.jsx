@@ -1,13 +1,27 @@
-import React from 'react';
-/* Styles */
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import Styles from './DogCardDetail.module.css';
-/* React-redux */
-import { connect } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 
+const axios = require('axios');
 
-const DogCardDetail = ({ dog }) => {
+
+const DogCardDetail = () => {
+    const [dog, setDog] = useState([]);
+
+    const {id} = useParams();
+
+    useEffect( function getId () {
+        axios.get(`http://localhost:3001/dogs/${id}`)
+        .then(r =>{
+            console.log(r.data)
+            var dog = r.data.find(e=>e)
+            console.log('DOG',dog)
+            setDog(dog)
+        })
+    }, [id]
+    )
+
     return (
         <div className={Styles.div}>
             <Nav />
@@ -30,5 +44,5 @@ const DogCardDetail = ({ dog }) => {
         </div>
     )
 }
-const mapStateToProps = ({ dog }) => ({ dog })
-export default connect(mapStateToProps)(DogCardDetail)
+
+export default DogCardDetail;
