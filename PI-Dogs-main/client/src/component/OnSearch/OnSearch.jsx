@@ -5,9 +5,9 @@ import { useState } from 'react'
 import Styles from './OnSearch.module.css'
 /* React-redux */
 import { connect } from 'react-redux'
-import { search } from '../../actions'
+import { dogsByName } from '../../actions'
 
-const OnSearch = ({ search }) => {
+const OnSearch = ({ dogsByName }) => {
 
     const [state, setState] = useState({
         search: ''
@@ -16,7 +16,7 @@ const OnSearch = ({ search }) => {
         setState({ [name]: value })
     }
     const handleSearch = () => {
-        search(state.search)
+        dogsByName(state.search)
     }
     return (
         <div className={Styles.container} >
@@ -35,4 +35,4 @@ const OnSearch = ({ search }) => {
     )
 }
 
-export default connect(null, { search })(OnSearch)
+export default connect(null, { dogsByName })(OnSearch)

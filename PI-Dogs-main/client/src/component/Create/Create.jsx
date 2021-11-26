@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 /* Styles */
-import './Create.module.css'
+import Styles from'./Create.module.css'
 /* Imgs */
 /* import Sparky from '../../assest/icons/sparky.png' */
 /* React Redux */
@@ -57,23 +57,23 @@ const Create = ({ temperaments, bringTemperaments }) => {
     }
     return (
         
-        <div className='container' >
+        <div className={Styles.container} >
             <Nav />
             {/* <div className='imgContainer'>
                 <img src={Sparky} alt="Viktor´'s Dog (Frankenwene)" />
             </div> */}
-            <div className='form'>
+            <div className={Styles.form}>
                 <h2>CREATE DOG</h2>
-                <div className='boxContainer' >
-                    <div className='box1' >
+                <div className={Styles.boxContainer} >
+                    <div className={Styles.box1} >
                         {/* Name */}
                         {/* <span>Name</span> */}
-                        {!state.name ? (<span className='info' >Name is required</span>) 
-                            : !state.name.match(/^[A-Za-z ]+$/) ? (<span className='info' >Name can not contains Numbers</span>)
+                        {!state.name ? (<span className={Styles.info} >Name is required</span>) 
+                            : !state.name.match(/^[A-Za-z ]+$/) ? (<span className={Styles.info} >Name can not contains Numbers</span>)
                             : null}
                         <label>
                             <input
-                                className='firstInput'
+                                className={Styles.firstInput}
                                 id='name'
                                 type='text'
                                 name='name'
@@ -84,11 +84,11 @@ const Create = ({ temperaments, bringTemperaments }) => {
                         </label><br />
                         {/* Min/Max height */}
                         {/* <span>Min/Max height</span> */}
-                        {!state.minHeight && !state.maxHeight ? (<span className='info' >Min and Max Height is required</span>) 
-                            : !state.minHeight ? (<span className='info' >Min Height is required</span>)
-                            : !state.maxHeight ? (<span className='info' >Max Height is required</span>)
-                            : parseInt(state.minHeight) > parseInt(state.maxHeight) ? (<span className='advise' >Max height should be greater than Min height</span>)
-                            : <span className='info2' >BIEN PERRIS</span>}
+                        {!state.minHeight && !state.maxHeight ? (<span className={Styles.info} >Min and Max Height is required</span>) 
+                            : !state.minHeight ? (<span className={Styles.info} >Min Height is required</span>)
+                            : !state.maxHeight ? (<span className={Styles.info} >Max Height is required</span>)
+                            : parseInt(state.minHeight) >= parseInt(state.maxHeight) ? (<span className={Styles.advise} >Max height should be greater than Min height</span>)
+                            : <span className={Styles.info2} >Data entered correctly</span>}
                         <label>
                             <input
                                 id='minH'
@@ -113,11 +113,11 @@ const Create = ({ temperaments, bringTemperaments }) => {
                         </label><br />
                         {/* Min/Max Weight */}
                         {/* <span>Min/Max weight</span> */}
-                        {!state.minWeight && !state.maxWeight ? (<span className='info' >Min and Max Weight is required</span>) 
-                            : !state.minWeight ? (<span className='info' >Min Weight is required</span>)
-                            : !state.maxWeight ? (<span className='info' >Max Weight is required</span>)
-                            : parseInt(state.minWeight) > parseInt(state.maxWeight) ? (<span className='advise' >Max Weight should be greater than Min Weight</span>)
-                            : <span className='info2' >MOLTO BENE</span>}
+                        {!state.minWeight && !state.maxWeight ? (<span className={Styles.info} >Min and Max Weight is required</span>) 
+                            : !state.minWeight ? (<span className={Styles.info} >Min Weight is required</span>)
+                            : !state.maxWeight ? (<span className={Styles.info} >Max Weight is required</span>)
+                            : parseInt(state.minWeight) >= parseInt(state.maxWeight) ? (<span className={Styles.advise} >Max Weight should be greater than Min Weight</span>)
+                            : <span className={Styles.info2} >Data entered correctly</span>}
                         <label>
                             <input
                                 id='minW'
@@ -158,11 +158,11 @@ const Create = ({ temperaments, bringTemperaments }) => {
 
                         {/* Life Expectancy */}
                         {/* <span>Life Expectancy</span> */}
-                        {!state.minlife_span && !state.maxlife_span ? (<span className='info' >Min and Max Life Span is required</span>) 
-                            : !state.minlife_span ? (<span className='info' >Min Life Span is required</span>)
-                            : !state.maxlife_span ? (<span className='info' >Max Weight is required</span>)
-                            : parseInt(state.minlife_span) > parseInt(state.maxlife_span) ? (<span className='advise' >Max Life Span should be greater than Min Life Span</span>)
-                            : <span className='info2' >TODO OK</span>}
+                        {!state.minlife_span && !state.maxlife_span ? (<span className={Styles.info} >Min and Max Life Span is required</span>) 
+                            : !state.minlife_span ? (<span className={Styles.info} >Min Life Span is required</span>)
+                            : !state.maxlife_span ? (<span className={Styles.info} >Max Weight is required</span>)
+                            : parseInt(state.minlife_span) >= parseInt(state.maxlife_span) ? (<span className={Styles.advise} >Max Life Span should be greater than Min Life Span</span>)
+                            : <span className={Styles.info2} >Data entered correctly</span>}
                         <label>
                             <input
                                 id='minlife_span'
@@ -190,18 +190,18 @@ const Create = ({ temperaments, bringTemperaments }) => {
                         <br />
                         <span>Add Temperament</span><br/>
                         {state.temperament.lenght ? (<span></span>)
-                            : (<span className='info' >Should have at least one temperament</span>)}
+                            : (<span className={Styles.info} >Should have at least one temperament</span>)}
                         <select onChange={pushValues} defaultValue='addTemp' name='temperament' placeholder='Add Temperament'>
                             <option value='addTemp' disabled>Add Temperament</option>
-                            {temperaments.map(temp => (<option value={temp.name} name={temp.name} key={temp.id} >{temp.name}</option>))}
+                            {temperaments.map(temp => (<option value={temp.name} name={temp.name} key={temperaments.indexOf(temp)} >{temp.name}</option>))}
                         </select>
-                        <button className='bttn' onClick={submitDog} >
+                        <button className={Styles.bttn} onClick={submitDog} >
                             Create
                         </button>
                     </div>
-                    <div className='box2' >
-                        <div className='boxTemps'>
-                            {state.temperament.map(temp => (<div className='divPerTemp'>
+                    <div className={Styles.box2} >
+                        <div className={Styles.boxTemps}>
+                            {state.temperament.map(temp => (<div className={Styles.divPerTemp}>
                                 <button onClick={cleanTemps} name={temp}>X</button>
                                 <span>{temp}</span>
                             </div>))}

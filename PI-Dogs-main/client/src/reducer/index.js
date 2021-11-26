@@ -64,22 +64,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 dog: findDog
             }
         case SEARCH: /* Search dog by name */
-            if (payload === '') {
-                return /* state.dog; */ alert('insert name')
-            }else{
-                const dog = auxiliar.filter(dog => {
-                
-                return dog.name.toLowerCase().includes(payload.toLowerCase()) 
-                /* {
-                    return dog
-                } */
-            })
-            if (!dog.length) return console.log('Dog not found', dog, auxiliar)
             return {
                 ...state,
-                dogs: dog,
-                /* begin: 0 */
-            }
+                dogs: payload,
             }
             
             

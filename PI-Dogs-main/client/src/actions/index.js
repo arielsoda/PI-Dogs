@@ -27,6 +27,18 @@ export const bringDogs = () => {
         })
     }
 }
+/* Dogs in the server 3001 by Name */
+export const dogsByName = (name) => {
+    return async function (dispatch) {
+        let serverDogs = `${server}/dogs?name=${name}`;
+        const response = await axios(serverDogs);
+        const data = response.data
+        return dispatch({
+            type: SEARCH,
+            payload: data
+        })
+    }
+}
 
 
 /* Temperaments in the server 3001 */
@@ -59,7 +71,7 @@ export const getPages = () => { return { type: PAGES } }
 /* Bring dog details */
 export const bringDogDetails = (id) => { return { type: DOG, payload: id } }
 /* Search by Name */
-export const search = (name) => { return { type: SEARCH, payload: name } }
+/* export const search = (name) => { return { type: SEARCH, payload: name } } */
 /* Filter by */
 export const filterBy = (arg) => { return { type: FILTER, payload: arg } }
 /* Order descendent (A-Z) */

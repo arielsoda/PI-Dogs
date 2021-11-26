@@ -1,9 +1,11 @@
 
 /* Container */
 .container{
+   /* background-color: black; */
     margin: 20px;
-    display: flex;
-    justify-content: space-around;
+    display: contents;
+    /* justify-content: initial; */
+    flex-direction: column;
 }
 /* Form */
 img{
@@ -85,9 +87,10 @@ h2{
     cursor: pointer;
 }
 .form{
+    background-color: black;
     padding: 10px 40px;
-    width: 50%;
-    border-radius: 20px;
+    width: auto;
+    /* border-radius: 20px; */
     box-shadow: 5px 5px 18px -2px #546E7A;
 }
 /* Img */
@@ -98,7 +101,7 @@ h2{
 /* Bttn */
 .bttn{
     margin: 20px 0;
-    background-color: #43A047;
+    background-color: #1a311b;
     font-size: 18px;    font-weight: 600;
     color: white;
     width: 100%;  height: 40px;
