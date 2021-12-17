@@ -12,7 +12,7 @@ const DogCardDetail = () => {
     const {id} = useParams();
 
     useEffect( function getId () {
-        axios.get(`http://localhost:3001/dogs/${id}`)
+        axios.get(`/dogs/${id}`)
         .then(r =>{
             console.log(r.data)
             var dog = r.data.find(e=>e)

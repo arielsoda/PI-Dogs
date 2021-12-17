@@ -19,7 +19,7 @@ export const bringDogs = () => {
     return async function (dispatch) {
         /* server back */
         let serverDogs = `${server}/dogs`;
-        const response = await axios(serverDogs);
+        const response = await axios('/dogs');
         const data = response.data
         return dispatch({
             type: GETDOGS,
@@ -31,7 +31,7 @@ export const bringDogs = () => {
 export const dogsByName = (name) => {
     return async function (dispatch) {
         let serverDogs = `${server}/dogs?name=${name}`;
-        const response = await axios(serverDogs);
+        const response = await axios(`/dogs?name=${name}`);
         const data = response.data
         return dispatch({
             type: SEARCH,
@@ -45,7 +45,7 @@ export const dogsByName = (name) => {
 export const bringTemperaments = () => {
     return async function (dispatch) {
         let serverTemps = `${server}/temperament`;
-        const response2 = await axios(serverTemps);
+        const response2 = await axios('/temperament');
         const data2 = response2.data
         return dispatch({
             type: GETTEMPS,
@@ -57,7 +57,7 @@ export const bringTemperaments = () => {
 export const createDog = async (state) => {
     try{
         let newDogInServer = `${server}/dogs`
-        await axios.post(newDogInServer, state)
+        await axios.post('/dogs', state)
         return window.alert(`The dog ${state.name} has been created`)
     }
     catch{
