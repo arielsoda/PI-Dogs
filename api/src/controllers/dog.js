@@ -133,8 +133,21 @@ async function addDogs (req, res, next) {
       life_span,
       image,
     });
-    await newDog.addTemperaments(temperament);
+    if (temperament.length>1){
+        temperament.map(async t=>{
+            const newTemperament = await Temperament.findAll({where:{
+                name:t
+            }})
+        await newDog.addTemperaments(newTemperament);
+        })
+        return res.json(newDog);
+    }else{
+        const newTemperament = await Temperament.findAll({where:{
+            name:temperament
+        }})
+        await newDog.addTemperaments(newTemperament);
     return res.json(newDog);
+    }
     }
     catch(e){
        next(e);
