@@ -16,7 +16,6 @@ const DogCardDetail = () => {
         .then(r =>{
             console.log(r.data)
             var dog = r.data.find(e=>e)
-            console.log('DOG',dog)
             setDog(dog)
         })
     }, [id]

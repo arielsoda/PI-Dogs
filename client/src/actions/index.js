@@ -1,62 +1,81 @@
 import axios from 'axios';
+import { getDogs, showPage, dog, pages, search, getTemp, filter, orderAA, orderDD, light, heavy } from '../store/slice/index';
 
-export const GETDOGS = "GET_DOGS";
-export const ORDERA = "ORDER_A";
-export const ORDERD = "ORDER_D";
-export const HEAVY = "HEAVY_TO_LIGHT";
-export const LIGHT = "LIGHT_TO_HEAVY";
-export const GETTEMPS = "GET_TEMPS";
-export const FILTER = "FILTER_BY";
-export const SEARCH = "SEARCH_BY_NAME";
-export const DOG = "SHOW_DOG_ROUTE";
-export const PAGES = "GET_NUMBER_PAGES";
-export const SHOWPAGE = "SHOW_NUMBER_PAGE";
-
-
-const server = 'http://localhost:3001';
-/* Dogs in the server 3001 */
-export const bringDogs = () => {
-    return async function (dispatch) {
-        /* server back */
-        let serverDogs = `${server}/dogs`;
-        const response = await axios('/dogs');
-        const data = response.data
-        return dispatch({
-            type: GETDOGS,
-            payload: data
-        })
+export const getDogsAsync = () => (dispatch) => {
+    axios.get('/dogs').then(response => {
+        dispatch(getDogs(response.data));
     }
-}
-/* Dogs in the server 3001 by Name */
-export const dogsByName = (name) => {
-    return async function (dispatch) {
-        let serverDogs = `${server}/dogs?name=${name}`;
-        const response = await axios(`/dogs?name=${name}`);
-        const data = response.data
-        return dispatch({
-            type: SEARCH,
-            payload: data
-        })
+    ).catch(error => {
+        console.log(error);
     }
-}
+    );
+};
 
-
-/* Temperaments in the server 3001 */
-export const bringTemperaments = () => {
-    return async function (dispatch) {
-        let serverTemps = `${server}/temperament`;
-        const response2 = await axios('/temperament');
-        const data2 = response2.data
-        return dispatch({
-            type: GETTEMPS,
-            payload: data2
-        })
+export const bringTemperaments = () => (dispatch) => {
+    axios.get('/temperament').then(response => {
+        dispatch(getTemp(response.data));
     }
-}
-/* Create a new dog into the DB */
+    ).catch(error => {
+        console.log(error);
+    }
+    );
+};
+
+export const dogsByName = (name) => (dispatch) => {
+    axios.get(`/dogs?name=${name}`).then(response => {
+        dispatch(search(response.data));
+    }
+    ).catch(error => {
+        console.log(error);
+    }
+    );
+};
+
+export const showEspPage = (page) => (dispatch) => {
+    dispatch(showPage(page));
+};
+
+export const bringDogDetails = (id) => (dispatch) => {
+    axios.get(`/dogs/${id}`).then(response => {
+        dispatch(dog(response.data));
+    }
+    ).catch(error => {
+        console.log(error);
+    }
+    );
+};
+
+export const getPages = (dogs) => (dispatch) => {
+    let newPages = []
+    for (let i = 0; i < dogs.length; i += 8) {
+        let slice = dogs.slice(i, i + 8)
+        newPages.push(slice)
+        }
+        dispatch(pages(newPages));
+};
+
+export const filterBy = (condition) => (dispatch) => {
+    dispatch(filter(condition));
+};
+
+export const orderA = () => (dispatch) => {
+    dispatch(orderAA());
+};
+
+export const orderD = () => (dispatch) => {
+    dispatch(orderDD());
+};
+
+export const orderLight = () => (dispatch) => {
+    dispatch(light());
+};
+
+export const orderHeavy = () => (dispatch) => {
+    dispatch(heavy());
+};
+
 export const createDog = async (state) => {
     try{
-        let newDogInServer = `${server}/dogs`
         await axios.post('/dogs', state)
         return window.alert(`The dog ${state.name} has been created`)
     }
@@ -64,21 +83,3 @@ export const createDog = async (state) => {
         return window.alert('Error in the process')
     }
 }
-/* Get especific page */
-export const showEspPage = (page) => { return { type: SHOWPAGE, payload: page } }
-/* Get pages */
-export const getPages = () => { return { type: PAGES } }
-/* Bring dog details */
-export const bringDogDetails = (id) => { return { type: DOG, payload: id } }
-/* Search by Name */
-/* export const search = (name) => { return { type: SEARCH, payload: name } } */
-/* Filter by */
-export const filterBy = (arg) => { return { type: FILTER, payload: arg } }
-/* Order descendent (A-Z) */
-export const orderD = () => { return { type: ORDERD } }
-/* Order Ascendent (Z-A) */
-export const orderA = () => { return { type: ORDERA } }
-/* Order heavy to light */
-export const orderHeavy = () => { return { type: HEAVY } }
-/* Order light to heavy */
-export const orderLight = () => { return { type: LIGHT } }

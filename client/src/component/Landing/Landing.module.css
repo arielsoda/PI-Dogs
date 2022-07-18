@@ -10,7 +10,6 @@
 .title{
   font-family: cursive;
   font-size: 100px;
-  display: inline;
 }
 
 /* .btn{
@@ -120,5 +119,34 @@ content: '';
     width: 300px;
     height: 300px;
     opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .title{
+    font-family: cursive;
+    font-size: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+  .bgImg{
+    display: contents;
+    width: 100%;
+  }
+  .home{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    margin-top: 100px;
+  }
+  .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0px;
   }
 }

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 /*  Styles */
 import Styles from './Order.module.css'
 /* React-redux */
-import { connect } from 'react-redux'
-import { orderA, orderD, orderLight, orderHeavy } from '../../actions'
+import { useDispatch } from 'react-redux'
+import { orderA, orderD, orderLight, orderHeavy } from '../../actions/index'
 
 
 const ordenamiento = {
@@ -11,8 +11,10 @@ const ordenamiento = {
     weight: true
 }
 
-const Order = ({ orderA, orderD, orderLight, orderHeavy }) => {
+const Order = () => {
     const [orderAW, setOrderAW] = useState(ordenamiento);
+
+    const dispatch = useDispatch();
 
     const ordenAOD = () => {
         setOrderAW({
@@ -22,11 +24,11 @@ const Order = ({ orderA, orderD, orderLight, orderHeavy }) => {
     };
 
     const ascen = ()=>{
-        orderD()
+        dispatch(orderD())
         ordenAOD()
     };
     const descen = ()=>{
-        orderA()
+        dispatch(orderA())
         ordenAOD()
     };
     
@@ -38,11 +40,11 @@ const Order = ({ orderA, orderD, orderLight, orderHeavy }) => {
     };
 
     const light = ()=>{
-        orderLight()
+        dispatch(orderLight())
         weightLH()
     };
     const heavy = ()=>{
-        orderHeavy()
+        dispatch(orderHeavy())
         weightLH()
     };
 
@@ -67,4 +69,4 @@ const Order = ({ orderA, orderD, orderLight, orderHeavy }) => {
     )
 }
 
-export default connect(null, { orderA, orderD, orderLight, orderHeavy })(Order)
+export default Order;

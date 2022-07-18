@@ -5,12 +5,12 @@ import Styles from'./Create.module.css'
 /* Imgs */
 /* import Sparky from '../../assest/icons/sparky.png' */
 /* React Redux */
-import { connect } from 'react-redux'
-import { bringTemperaments, createDog } from "../../actions";
+import { useSelector, useDispatch } from 'react-redux'
+import { bringTemperaments, createDog } from "../../actions/index";
 
 import Nav from "../Nav/Nav";
 
-const Create = ({ temperaments, bringTemperaments }) => {
+const Create = () => {
     /* Form state */
     const [state, setState] = useState({
         name: '',
@@ -22,14 +22,19 @@ const Create = ({ temperaments, bringTemperaments }) => {
         maxlife_span: '',
         temperament: []
     })
+
+    const temperaments = useSelector(state => state.temperaments);
+
+    const dispatch = useDispatch();
+
     /* bring Temps */
     useEffect(() => {
         async function bringTemps() {
-            const allTemps = await bringTemperaments()
+            const allTemps = await dispatch(bringTemperaments())
             return allTemps
         };
         bringTemps()
-    }, [bringTemperaments])
+    }, [dispatch])
     /* Change the state */
     const handleChange = ({ target: { name, value } }) => {
         setState({ ...state, [name]: value })
@@ -53,7 +58,7 @@ const Create = ({ temperaments, bringTemperaments }) => {
         if (!state.name || !state.minHeight || !state.maxHeight || !state.minWeight || !state.maxWeight || !state.minlife_span || !state.maxlife_span || state.temperament.length < 1) {
             return alert('There are empty fields required')
         }
-        createDog(state)
+        dispatch(createDog(state))
     }
     return (
         
@@ -212,8 +217,5 @@ const Create = ({ temperaments, bringTemperaments }) => {
         </div>
     )
 }
-const mapStateToProps = ({ temperaments }) => ({
-    temperaments
-})
 
-export default connect(mapStateToProps, { bringTemperaments })(Create)
+export default Create;

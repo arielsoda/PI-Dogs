@@ -2,15 +2,20 @@ import React from 'react'
 /* Styles */
 import Styles from './Pagination.module.css'
 /* React-redux */
-import { connect } from 'react-redux'
-import { showEspPage } from '../../actions'
+import { showEspPage } from '../../actions/index'
+import { useSelector, useDispatch } from 'react-redux'
 
-const Pagination = ({ pages, showEspPage }) => {
+const Pagination = () => {
+    const pages = useSelector(state => state.pages);
+    const dispatch = useDispatch();
+    
+    
+
     return (
         <div className={Styles.container} >
-            {pages.map((arr, i) => {
+            {pages.map((arr,i) => {
                 const onClickChange = (e) => {
-                    showEspPage(e.target.value)
+                    dispatch(showEspPage(e.target.value))
                 }
                 let j = i + 1
                 return (<button onClick={onClickChange} key={i} className={Styles.bttn} value={i} >{j}</button>)
@@ -18,8 +23,5 @@ const Pagination = ({ pages, showEspPage }) => {
         </div>
     )
 }
-const mapStateToProps = ({ pages }) => ({
-    pages
-})
 
-export default connect(mapStateToProps, { showEspPage })(Pagination)
+export default Pagination

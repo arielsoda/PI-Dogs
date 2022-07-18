@@ -4,19 +4,19 @@ import { useState } from 'react'
 /* Styles */
 import Styles from './OnSearch.module.css'
 /* React-redux */
-import { connect } from 'react-redux'
-import { dogsByName } from '../../actions'
+import { dogsByName } from '../../actions/index'
+import { useDispatch } from 'react-redux'
 
-const OnSearch = ({ dogsByName }) => {
-
+const OnSearch = () => {
     const [state, setState] = useState({
         search: ''
     })
+    const dispatch = useDispatch()
     const handleChange = ({ target: { name, value } }) => {
         setState({ [name]: value })
     }
     const handleSearch = () => {
-        dogsByName(state.search)
+        dispatch(dogsByName(state.search))
     }
     return (
         <div className={Styles.container} >
@@ -35,4 +35,4 @@ const OnSearch = ({ dogsByName }) => {
     )
 }
 
-export default connect(null, { dogsByName })(OnSearch)
+export default OnSearch

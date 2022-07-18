@@ -1,45 +1,55 @@
 /* Typography*/
 /* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap'); */
 /* Vars */
-.container{
+.container {
     background-image: url('../../tools/img/fondoNavBar.png');
     position: relative;
     font-family: 'Rubik';
     padding: 3px 15px 0;
     border-bottom: 1px solid rgb(96, 96, 96, 0.3);
 }
-.container, .home{
+
+.container,
+.home {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-.padding{
+
+.padding {
     color: white;
     padding-left: 16px;
     font-weight: 600;
     font-size: 1.4375rem;
 }
-.reset{
+
+.reset {
     text-decoration: none;
     color: black;
 }
-.img{
+
+.img {
     padding: 13px 0;
-    width: 40px; height: auto;
+    width: 40px;
+    height: auto;
 }
-.img2{
+
+.img2 {
     padding: 14px 0;
-    width: 40px; height: auto;
+    width: 40px;
+    height: auto;
 }
-.img2:hover{
+
+.img2:hover {
     transform: scale(1.04);
     transition: 0.2;
 }
-.bttn{
+
+.bttn {
     width: 190px;
     height: 35px;
-    color:#ffffff;
+    color: #ffffff;
     border-radius: 7px;
     font-family: 'Rubik';
     font-size: 16px;
@@ -48,12 +58,22 @@
     border: none;
     background-color: #854bf1;
 }
-.bttn:hover{
+
+.bttn:hover {
     background-color: #8629ff;
-    
+
 }
-.container:hover{
+
+.container:hover {
     background-color: #ECEFF1;
     color: white;
     transition: 2s;
+}
+
+@media (max-width: 700px) {
+
+    .container,
+    .home {
+        justify-content: space-evenly;
+    }
 }

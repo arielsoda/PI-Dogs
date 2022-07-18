@@ -1,8 +1,9 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
 }
-.bttn{
+
+.bttn {
     border-radius: 2px;
     font-weight: 700;
     color: white;
@@ -12,4 +13,19 @@
     border: none;
     background-color: #7f25e7b9;
     cursor: pointer;
+}
+
+@media (max-width: 700px) {
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(7, 0fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 1px;
+
+    }
+
+    .bttn {
+        margin: 10px 3px;
+    }
 }
