@@ -54,4 +54,7 @@
     .img {
         object-fit: contain;
     }
+    .spancontainer {
+        display: none;
+    }
 }
