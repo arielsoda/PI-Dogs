@@ -31,3 +31,16 @@
     background-color: black;
     /* background-image: url('../../assest/img/fondoDetails.png'); */
 }
+
+@media (max-width: 700px) {
+
+    .container{
+        padding: 1px;
+        display: grid;
+        justify-content: space-around;
+    }
+    .imgContainer{
+        width: 100%;
+        border-radius: 30px;
+    }
+}
